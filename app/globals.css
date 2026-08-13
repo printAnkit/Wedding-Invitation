@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ivory: #faf5ec;
+  --ivory-deep: #f2e8d8;
+  --paper: #fffdf8;
+  --card-fill: #ece7d6;
+  --gold: #cba431;
+  --gold-light: #e2c968;
+  --gold-dark: #a3821f;
+  --rose: #c46c8c;
+  --rose-dark: #a85470;
+  --sage: #7c8c5c;
+  --sage-dark: #66754a;
+  --slate: #748ca4;
+  --slate-dark: #5c7288;
+  --ink-soft: #7a6b54;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ivory: var(--ivory);
+  --color-ivory-deep: var(--ivory-deep);
+  --color-paper: var(--paper);
+  --color-card-fill: var(--card-fill);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-rose: var(--rose);
+  --color-rose-dark: var(--rose-dark);
+  --color-sage: var(--sage);
+  --color-sage-dark: var(--sage-dark);
+  --color-slate: var(--slate);
+  --color-slate-dark: var(--slate-dark);
+  --color-ink-soft: var(--ink-soft);
+  --font-script: var(--font-script);
+  --font-symphony: var(--font-symphony);
+  --font-serif: var(--font-serif);
+  --font-label: var(--font-label);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--ivory);
+  background-image: url("/images/paper-texture-tile.png");
+  background-size: 900px;
+  background-repeat: repeat;
+  color: var(--sage-dark);
+  font-family: var(--font-serif), serif;
+}
+
+.tracking-widest-lg {
+  letter-spacing: 0.35em;
+}
+
+.lace-frame {
+  border-style: solid;
+  border-width: clamp(38px, 10vw, 84px);
+  border-image-source: url("/images/back shape.png");
+  border-image-slice: 13% 16% 11% 17%;
+  border-image-repeat: round;
+  background-color: var(--card-fill);
+  background-clip: padding-box;
 }
