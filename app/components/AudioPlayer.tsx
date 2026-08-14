@@ -12,6 +12,9 @@ export function AudioPlayer() {
     const audio = audioRef.current;
     if (!audio) return;
 
+    // Scroll to top on every page load / refresh
+    window.scrollTo({ top: 0, behavior: "instant" });
+
     audio.volume = 0.5;
     audio.loop = true;
 
