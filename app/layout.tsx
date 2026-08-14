@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Great_Vibes, Cormorant_Garamond, Jost } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { AudioPlayer } from "./components/AudioPlayer";
 
 const greatVibes = Great_Vibes({
   variable: "--font-script",
@@ -71,7 +72,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${greatVibes.variable} ${symphony.variable} ${cormorant.variable} ${jost.variable} antialiased`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        <AudioPlayer />
+      </body>
     </html>
   );
 }
