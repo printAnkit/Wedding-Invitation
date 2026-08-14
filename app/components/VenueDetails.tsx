@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { IMG } from "./assets";
-import { Reveal } from "./Reveal";
 
 const MAP_QUERY = encodeURIComponent(
   "Spara Boutique Resort, G-1, Pushpanjali Farms, Dwarka Expressway, Bijwasan, New Delhi, Delhi 110037",
@@ -12,13 +11,39 @@ const MAP_QUERY = encodeURIComponent(
 export function VenueDetails() {
   return (
     <section
-      className="flex flex-col items-center justify-center py-10 text-center"
+      className="relative flex flex-col items-center justify-center overflow-hidden py-10 text-center"
       id="venue"
     >
-      <Reveal className="flex flex-col items-center">
-        <h2 className="font-symphony text-6xl text-sage">Venue Details</h2>
+      <Image
+        src={IMG.mainBg}
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover"
+      />
 
-        <div className="relative mt-10 aspect-[1536/1024] w-full max-w-xl">
+      <div className="relative z-10 flex flex-col items-center">
+        <h2 className="flex font-symphony text-6xl text-sage">
+          {"Venue Details".split("").map((char, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0 }}
+              transition={{ duration: 0.15, delay: i * 0.09 }}
+            >
+              {char === " " ? " " : char}
+            </motion.span>
+          ))}
+        </h2>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.3 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0 }}
+          transition={{ duration: 1.9, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mt-10 aspect-[1536/1024] w-full max-w-xl"
+        >
           <Image
             src={IMG.rsvpBg}
             alt=""
@@ -33,28 +58,44 @@ export function VenueDetails() {
             sizes="(min-width: 640px) 600px, 100vw"
             className="z-10 object-contain"
           />
-        </div>
+        </motion.div>
 
-        <h3 className="mt-8 font-serif text-2xl uppercase tracking-wide text-slate sm:text-3xl">
+        <motion.h3
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0 }}
+          transition={{ duration: 1.7, delay: 0.95, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-8 font-serif text-2xl uppercase tracking-wide text-slate sm:text-3xl"
+        >
           Spara Boutique Resort
-        </h3>
-        <p className="mt-3 max-w-sm font-serif text-sm uppercase tracking-wide text-sage">
+        </motion.h3>
+        <motion.p
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0 }}
+          transition={{ duration: 1.7, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-3 max-w-sm font-serif text-sm uppercase tracking-wide text-sage"
+        >
           G-1, Pushpanjali Farms, Dwarka Expressway,
           <br />
           Bijwasan, New Delhi, Delhi 110037
-        </p>
+        </motion.p>
 
         <motion.a
           href={`https://www.google.com/maps/search/?api=1&query=${MAP_QUERY}`}
           target="_blank"
           rel="noopener noreferrer"
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
+          transition={{ duration: 1.2, delay: 1.3, ease: [0.22, 1, 0.36, 1] }}
           className="mt-8 inline-flex items-center gap-2 border-b border-gold font-script text-2xl italic text-gold underline decoration-gold underline-offset-4 transition-colors hover:text-gold-dark"
         >
           View On Map
         </motion.a>
-      </Reveal>
+      </div>
     </section>
   );
 }

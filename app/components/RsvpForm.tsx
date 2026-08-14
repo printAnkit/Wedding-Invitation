@@ -4,8 +4,7 @@ import { useState, type FormEvent } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { IMG } from "./assets";
-import { Sway } from "./Sway";
-import { Reveal } from "./Reveal";
+import { TypingText } from "./TypingText";
 
 type Attendance = "yes" | "no";
 
@@ -27,21 +26,29 @@ export function RsvpForm() {
       id="rsvp"
     >
       <Image
+        src={IMG.mainBg}
+        alt=""
+        fill
+        sizes="100vw"
+        className="hidden lg:block object-cover"
+      />
+
+      <Image
         src={IMG.rsvpBg}
         alt=""
         fill
         sizes="100vw"
-        className="object-cover"
+        className="object-cover lg:object-contain"
       />
 
-      <Sway
-        rotate={5}
-        y={18}
-        duration={5}
-        origin="top right"
-        className="pointer-events-none absolute right-0 top-10 z-10 hidden h-40 w-56 sm:block md:h-56 md:w-72"
-      >
-        <div className="relative h-full w-full drop-shadow-lg">
+      <div className="pointer-events-none absolute right-0 top-6 z-10 h-56 w-56 -rotate-52">
+        <motion.div
+          initial={{ opacity: 0, x: 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="relative h-full w-full drop-shadow-lg"
+        >
           <Image
             src={IMG.fan}
             alt=""
@@ -49,11 +56,19 @@ export function RsvpForm() {
             sizes="300px"
             className="object-contain object-top"
           />
-        </div>
-      </Sway>
+        </motion.div>
+      </div>
 
-      <Reveal className="relative mx-auto flex max-w-md flex-col items-center">
-        <h2 className="font-symphony text-5xl text-sage sm:text-6xl">Rsvp</h2>
+      <div className="relative mx-auto flex max-w-md flex-col items-center">
+        <motion.h2
+          initial={{ opacity: 0, y: -40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0 }}
+          transition={{ duration: 1.7, ease: [0.22, 1, 0.36, 1] }}
+          className="font-symphony text-5xl text-sage sm:text-6xl"
+        >
+          Rsvp
+        </motion.h2>
 
         <AnimatePresence mode="wait">
           {submitted ? (
@@ -88,14 +103,22 @@ export function RsvpForm() {
                   htmlFor="guest-name"
                   className="font-serif text-lg italic text-sage"
                 >
-                  Please enter your name
+                  <TypingText text="Please enter your name" delay={0.5} />
                 </label>
-                <input
+                <motion.input
                   id="guest-name"
                   type="text"
                   required
                   value={name}
                   onChange={(event) => setName(event.target.value)}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0 }}
+                  transition={{
+                    duration: 1,
+                    delay: 1.3,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                   className="mt-2 w-full border-b-2 border-sage bg-transparent px-1 py-2 font-serif text-lg text-sage-dark focus:border-gold focus:outline-none"
                 />
               </div>
@@ -105,19 +128,36 @@ export function RsvpForm() {
                   htmlFor="guest-phone"
                   className="font-serif text-lg italic text-sage"
                 >
-                  Please enter your mobile number
+                  <TypingText
+                    text="Please enter your mobile number"
+                    delay={1.6}
+                  />
                 </label>
-                <input
+                <motion.input
                   id="guest-phone"
                   type="tel"
                   inputMode="tel"
                   value={phone}
                   onChange={(event) => setPhone(event.target.value)}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0 }}
+                  transition={{
+                    duration: 1,
+                    delay: 2.6,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                   className="mt-2 w-full border-b-2 border-sage bg-transparent px-1 py-2 font-serif text-lg text-sage-dark focus:border-gold focus:outline-none"
                 />
               </div>
 
-              <div className="w-full text-left">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0 }}
+                transition={{ duration: 1, delay: 3, ease: [0.22, 1, 0.36, 1] }}
+                className="w-full text-left"
+              >
                 <p className="font-serif text-lg italic text-sage">
                   Will you be joining us for the wedding celebrations?
                 </p>
@@ -168,18 +208,36 @@ export function RsvpForm() {
                     </motion.label>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
-              <p className="font-serif text-sm italic text-sage">
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0 }}
+                transition={{
+                  duration: 1,
+                  delay: 3.3,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="font-serif text-sm italic text-sage"
+              >
                 For any further information, please feel free to contact us.
                 <br />
                 98115 88250, 8796771418
-              </p>
+              </motion.p>
 
               <motion.button
                 type="submit"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                transition={{
+                  duration: 1,
+                  delay: 3.6,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 className="mt-2 rounded-full bg-slate px-12 py-3 font-script text-xl italic text-gold-light underline decoration-gold-light underline-offset-4 transition-colors hover:bg-slate-dark"
               >
                 Submit
@@ -187,7 +245,7 @@ export function RsvpForm() {
             </motion.form>
           )}
         </AnimatePresence>
-      </Reveal>
+      </div>
     </section>
   );
 }

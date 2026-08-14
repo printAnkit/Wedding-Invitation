@@ -38,7 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${greatVibes.variable} ${symphony.variable} ${cormorant.variable} ${jost.variable} antialiased`}
     >
-      <body className="min-h-full bg-ivory">{children}</body>
+      <body className="min-h-full">{children}</body>
     </html>
   );
 }

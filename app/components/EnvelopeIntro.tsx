@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { IMG } from "./assets";
@@ -8,6 +8,13 @@ import { Sway } from "./Sway";
 
 export function EnvelopeIntro() {
   const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const timer = setTimeout(() => setExpanded(true), 3000);
+    return () => clearTimeout(timer);
+  }, [open]);
 
   return (
     <section
@@ -24,24 +31,72 @@ export function EnvelopeIntro() {
       />
       <div className="absolute inset-0 bg-ivory/55" />
 
-      <div className="relative flex flex-col items-center">
+      {/* Top-right flower, slides in right to left */}
+      <div className="pointer-events-none absolute -right-8 -top-0 z-10 w-56">
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <Sway rotate={3} duration={6}>
+            <div className="relative aspect-[1536/1024] w-full">
+              <Image
+                src={IMG.pinkFlower}
+                alt=""
+                fill
+                sizes="320px"
+                className="object-contain object-top"
+              />
+            </div>
+          </Sway>
+        </motion.div>
+      </div>
+
+      {/* Bottom-left flower, slides in left to right (x is inverted here since the parent is mirrored with scale-x-[-1]) */}
+      <div className="pointer-events-none absolute -bottom-0 -left-8 z-10 w-56 scale-x-[-1] scale-y-[-1]">
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <Sway rotate={-3} duration={6.5}>
+            <div className="relative aspect-[1536/1024] w-full">
+              <Image
+                src={IMG.pinkFlower}
+                alt=""
+                fill
+                sizes="320px"
+                className="object-contain object-top"
+              />
+            </div>
+          </Sway>
+        </motion.div>
+      </div>
+
+      <div className="relative z-10 flex w-full max-w-md flex-col items-center md:max-w-lg lg:max-w-xl">
         <motion.p
+          animate={{ opacity: open ? 0 : 1, y: 0 }}
           initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="font-label text-xs uppercase tracking-widest-lg text-ink-soft"
+          className={`font-label text-xs uppercase tracking-widest-lg text-ink-soft lg:text-sm ${open ? "pointer-events-none" : ""}`}
         >
           You are cordially invited
         </motion.p>
 
-        <div className="relative mt-10 flex items-center gap-2">
+        <div className="relative mt-10 flex w-full items-center justify-center gap-2">
           <Sway
-            className="hidden w-16 sm:block"
+            className={`hidden w-16 sm:block ${open ? "pointer-events-none" : ""}`}
             rotate={6}
             duration={4.5}
             y={6}
           >
-            <div className="relative h-40 w-16">
+            <motion.div
+              animate={{ opacity: open ? 0 : 1 }}
+              transition={{ duration: 0.5 }}
+              className="relative h-40 w-16"
+            >
               <Image
                 src={IMG.pinkTassel}
                 alt=""
@@ -49,73 +104,125 @@ export function EnvelopeIntro() {
                 sizes="80px"
                 className="object-contain object-top"
               />
-            </div>
+            </motion.div>
           </Sway>
 
-          <motion.button
-            type="button"
-            onClick={() => setOpen(true)}
-            whileHover={!open ? { scale: 1.04 } : undefined}
-            whileTap={!open ? { scale: 0.97 } : undefined}
-            animate={
-              !open
-                ? { y: [0, -10, 0], rotate: [-1.5, 1.5, -1.5] }
-                : { y: 0, rotate: 0 }
-            }
-            transition={
-              !open
-                ? { duration: 4, repeat: Infinity, ease: "easeInOut" }
-                : { duration: 0.6 }
-            }
-            aria-label="Open the invitation"
-            className="relative h-56 w-64 cursor-pointer sm:h-64 sm:w-72"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.3 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
-            <AnimatePresence mode="wait">
-              {open ? (
+            <motion.div
+              animate={
+                expanded
+                  ? { y: 0, scale: 2.2 }
+                  : !open
+                    ? { y: [0, -10, 0], scale: 1 }
+                    : { y: 0, scale: 1 }
+              }
+              transition={
+                expanded
+                  ? { duration: 1.6, ease: [0.22, 1, 0.36, 1] }
+                  : !open
+                    ? { duration: 4, repeat: Infinity, ease: "easeInOut" }
+                    : { duration: 0.5 }
+              }
+              className="relative aspect-[1366/1394] w-64 overflow-hidden sm:w-72 md:w-80 lg:w-96"
+            >
+              {/* Envelope base, crossfades closed -> open, removed once the card expands */}
+              {!expanded && (
+                <AnimatePresence>
+                  <motion.div
+                    key={open ? "open" : "closed"}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={open ? IMG.openEnvelope : IMG.closeEnvelope}
+                      alt={
+                        open
+                          ? "Open invitation envelope"
+                          : "Sealed invitation envelope"
+                      }
+                      fill
+                      priority
+                      sizes="300px"
+                      className="object-contain"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              )}
+
+              {/* Invitation card, slides up from behind the envelope */}
+              {open && (
                 <motion.div
-                  key="open"
-                  initial={{ opacity: 0, scale: 0.94 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                  className="relative h-full w-full"
+                  initial={{ y: "15%", opacity: 0 }}
+                  animate={{ y: "0%", opacity: 1 }}
+                  transition={{
+                    duration: 3,
+                    delay: 1.2,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="absolute inset-0 z-10"
                 >
                   <Image
-                    src={IMG.openEnvelope}
-                    alt="Open invitation envelope"
+                    src={IMG.envelopePage}
+                    alt="Wedding invitation"
                     fill
-                    sizes="300px"
-                    className="object-contain"
-                  />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="closed"
-                  initial={{ opacity: 0, scale: 0.94 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.05 }}
-                  transition={{ duration: 0.4 }}
-                  className="relative h-full w-full"
-                >
-                  <Image
-                    src={IMG.closeEnvelope}
-                    alt="Sealed invitation envelope"
-                    fill
-                    sizes="300px"
+                    priority
+                    sizes="600px"
                     className="object-contain"
                   />
                 </motion.div>
               )}
-            </AnimatePresence>
-          </motion.button>
+
+              {/* Envelope flap, layered on top so the card appears to emerge from inside it */}
+              {open && !expanded && (
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0 }}
+                  className="absolute inset-x-3 top-14 lg:top-18 z-18 aspect-[1366/1204] w-full"
+                >
+                  <Image
+                    src={IMG.envelopeFlap}
+                    alt=""
+                    fill
+                    sizes="300px"
+                    className="object-contain object-top"
+                  />
+                </motion.div>
+              )}
+
+              {!open && (
+                <motion.button
+                  type="button"
+                  onClick={() => setOpen(true)}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  aria-label="Open the invitation"
+                  className="absolute inset-0 cursor-pointer"
+                />
+              )}
+            </motion.div>
+          </motion.div>
 
           <Sway
-            className="hidden w-16 sm:block"
+            className={`hidden w-16 sm:block ${open ? "pointer-events-none" : ""}`}
             rotate={-6}
             duration={5}
             delay={0.4}
             y={6}
           >
-            <div className="relative h-40 w-16">
+            <motion.div
+              animate={{ opacity: open ? 0 : 1 }}
+              transition={{ duration: 0.5 }}
+              className="relative h-40 w-16"
+            >
               <Image
                 src={IMG.blueTassel}
                 alt=""
@@ -123,60 +230,18 @@ export function EnvelopeIntro() {
                 sizes="80px"
                 className="object-contain object-top"
               />
-            </div>
+            </motion.div>
           </Sway>
         </div>
 
-        <AnimatePresence>
-          {!open && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="mt-8 font-script text-2xl text-gold-dark"
-            >
-              tap to open
-            </motion.p>
-          )}
-        </AnimatePresence>
-
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-8 flex flex-col items-center"
-            >
-              <Sway rotate={2} y={5} duration={4.5} className="h-16 w-16">
-                <Image
-                  src={IMG.waxSeal}
-                  alt="Meharvan and Snjyot monogram"
-                  width={200}
-                  height={200}
-                  className="h-16 w-16 object-contain"
-                />
-              </Sway>
-              <p className="mt-4 font-script text-3xl text-rose sm:text-4xl">
-                Meharvan &amp; Snjyot
-              </p>
-              <p className="mt-2 font-label text-[11px] uppercase tracking-widest-lg text-ink-soft">
-                are getting married
-              </p>
-
-              <motion.a
-                href="#hero"
-                aria-label="Scroll to the invitation"
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-                className="mt-12 text-xl text-gold"
-              >
-                &#8595;
-              </motion.a>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <motion.p
+          animate={{ opacity: open ? 0 : 1 }}
+          initial={{ opacity: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          className={`mt-8 font-symphony text-5xl text-gold-dark lg:text-6xl xl:text-7xl ${open ? "pointer-events-none" : ""}`}
+        >
+          Tap to Open
+        </motion.p>
       </div>
     </section>
   );

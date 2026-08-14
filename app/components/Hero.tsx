@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { IMG } from "./assets";
 import { Sway } from "./Sway";
 import { Reveal } from "./Reveal";
@@ -9,10 +10,30 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex flex-col items-center justify-center overflow-visible px-10 py-20 sm:py-28"
+      className="relative flex flex-col items-center justify-center overflow-visible px-13 py-20"
     >
-      <div className="lace-frame relative mx-auto w-full max-w-md">
-        <div className="absolute -right-4 -top-16 z-10 h-36 w-40 sm:-right-8 sm:-top-20 sm:h-44 sm:w-48">
+      <Image
+        src={IMG.mainBg}
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover"
+      />
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.7 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+        className="lace-frame relative z-10 mx-auto w-full max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl"
+      >
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0 }}
+          transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute -right-4 -top-16 z-10 h-36 w-40 sm:-right-8 sm:-top-20 sm:h-44 sm:w-48"
+        >
           <Sway
             rotate={3}
             y={6}
@@ -46,31 +67,34 @@ export function Hero() {
               />
             </div>
           </Sway>
-        </div>
+        </motion.div>
 
-        <Sway
-          rotate={1}
-          y={2}
-          duration={6}
-          origin="bottom left"
-          className="absolute -bottom-18 -left-30 z-10 h-66 w-66 sm:-bottom-8 sm:-left-10 sm:h-36 sm:w-36"
-        >
-          <div className="relative h-full w-full drop-shadow-md">
-            <Image
-              src={IMG.fountain}
-              alt=""
-              fill
-              sizes="150px"
-              className="object-contain object-bottom"
-            />
-          </div>
-        </Sway>
+        <div className="absolute -bottom-18 -left-25 z-10 h-56 w-56 sm:-bottom-8 sm:-left-10 sm:h-36 sm:w-36">
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0 }}
+            transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Sway rotate={1} y={2} duration={6} origin="bottom left">
+              <div className="relative h-56 w-56 drop-shadow-md sm:h-36 sm:w-36">
+                <Image
+                  src={IMG.fountain}
+                  alt=""
+                  fill
+                  sizes="150px"
+                  className="object-contain object-bottom"
+                />
+              </div>
+            </Sway>
+          </motion.div>
+        </div>
 
         <div className="relative flex flex-col items-center px-2 pb-10 pt-2 text-center sm:pb-12">
           <Sway
-            rotate={4}
-            y={4}
-            duration={4.5}
+            rotate={0}
+            y={0}
+            duration={0}
             className="h-9 w-9 sm:h-11 sm:w-11"
           >
             <Image
@@ -82,39 +106,94 @@ export function Hero() {
             />
           </Sway>
 
-          <Reveal delay={0.15}>
-            <p className="mt-3 font-serif text-sm italic text-sage sm:text-lg">
+          <div className="mt-1">
+            <motion.p
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{
+                duration: 0.8,
+                delay: 0.8,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="font-serif text-xs italic text-sage lg:text-sm xl:text-base"
+            >
               With immense joy and grateful hearts,
-              <br />
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{
+                duration: 0.8,
+                delay: 1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="font-serif text-xs italic text-sage lg:text-sm xl:text-base"
+            >
               we invite you to
-              <br />
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{
+                duration: 0.8,
+                delay: 1.2,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="font-serif text-xs italic text-sage lg:text-sm xl:text-base"
+            >
               The Wedding Celebrations of
-            </p>
-          </Reveal>
+            </motion.p>
+          </div>
 
-          <Reveal delay={0.3}>
-            <h1 className="mt-5 font-symphony text-5xl leading-tight text-rose sm:text-6xl">
+          <Reveal delay={1.5}>
+            <h1 className="mt-4 font-symphony text-5xl leading-tight text-rose sm:text-6xl lg:text-7xl xl:text-8xl">
               Meharvan
             </h1>
           </Reveal>
-          <Reveal delay={0.4}>
-            <span className="my-1 block font-label text-xs uppercase tracking-widest-lg text-sage">
+          <Reveal delay={1.7}>
+            <span className="block font-label text-xs uppercase tracking-widest-lg text-sage">
               and
             </span>
           </Reveal>
-          <Reveal delay={0.45}>
-            <h1 className="font-symphony text-5xl leading-tight text-rose sm:text-6xl">
+          <Reveal delay={1.9}>
+            <h1 className="font-symphony text-5xl leading-tight text-rose sm:text-6xl lg:text-7xl xl:text-8xl">
               Snjyot
             </h1>
           </Reveal>
 
-          <Reveal delay={0.6}>
-            <p className="mt-5 max-w-xs font-serif text-lg italic text-sage">
-              Celebrate love, laughter, and cherished moments with us.
-            </p>
-          </Reveal>
+          <div className="mt-4">
+            <motion.p
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{
+                duration: 0.8,
+                delay: 2.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="font-serif text-xs italic text-sage lg:text-sm xl:text-base"
+            >
+              Celebrate love, laughter, and
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{
+                duration: 0.8,
+                delay: 2.3,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="font-serif text-xs italic text-sage lg:text-sm xl:text-base"
+            >
+              cherished moments with us.
+            </motion.p>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

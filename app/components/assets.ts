@@ -1,10 +1,10 @@
 /** Central map of the hand-picked Canva export filenames to keep spaces/casing out of components. */
 export const IMG = {
-  paperTexture: "/images/ivory_paper_texture_4k.png",
-  waxSeal: "/images/NAME WAX SEAL.png",
   watermark: "/images/watermark.png",
   closeEnvelope: "/images/close envelope png.png",
   openEnvelope: "/images/open envelope png.png",
+  envelopePage: "/images/envelope page.png",
+  envelopeFlap: "/images/envelope UP.png",
   envelopeBg: "/images/Envelope BG.jpg",
   handsInvite: "/images/hands invite.png",
   scratchHands: "/images/Scratch IMAGE.png",
@@ -29,6 +29,5 @@ export const IMG = {
   frontImage: "/images/front image.jpg",
   monogramM: "/images/omkar sign.png",
   flowerPot: "/images/flower pot (2).png",
-  vineSprigSingle: "/images/vine-sprig-single.png",
-  vineSprigPair: "/images/vine-sprig-pair.png",
+  mainBg: "/images/wallpaper.jpeg",
 } as const;

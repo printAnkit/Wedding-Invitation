@@ -47,10 +47,6 @@ html {
 }
 
 body {
-  background-color: var(--ivory);
-  background-image: url("/images/paper-texture-tile.png");
-  background-size: 900px;
-  background-repeat: repeat;
   color: var(--sage-dark);
   font-family: var(--font-serif), serif;
 }
