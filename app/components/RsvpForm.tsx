@@ -13,7 +13,11 @@ export function RsvpForm() {
   const [phone, setPhone] = useState("");
   const [attendance, setAttendance] = useState<Attendance | null>(null);
   const [submitted, setSubmitted] = useState(false);
-  const [errors, setErrors] = useState<{ name?: string; phone?: string; attendance?: string }>({});
+  const [errors, setErrors] = useState<{
+    name?: string;
+    phone?: string;
+    attendance?: string;
+  }>({});
   const [loading, setLoading] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
@@ -92,7 +96,7 @@ export function RsvpForm() {
         className="object-cover lg:object-contain"
       />
 
-      <div className="pointer-events-none absolute right-0 top-6 z-10 h-56 w-56 -rotate-52">
+      <div className="pointer-events-none absolute right-0 top-2 z-10 h-46 w-46 -rotate-52">
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -162,7 +166,8 @@ export function RsvpForm() {
                   value={name}
                   onChange={(event) => {
                     setName(event.target.value);
-                    if (errors.name) setErrors((prev) => ({ ...prev, name: undefined }));
+                    if (errors.name)
+                      setErrors((prev) => ({ ...prev, name: undefined }));
                   }}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -175,7 +180,9 @@ export function RsvpForm() {
                   className="mt-2 w-full border-b-2 border-sage bg-transparent px-1 py-2 font-serif text-lg text-sage-dark focus:border-gold focus:outline-none"
                 />
                 {errors.name && (
-                  <p className="mt-1 font-serif text-sm italic text-rose-dark">{errors.name}</p>
+                  <p className="mt-1 font-serif text-sm italic text-rose-dark">
+                    {errors.name}
+                  </p>
                 )}
               </div>
 
@@ -196,7 +203,8 @@ export function RsvpForm() {
                   value={phone}
                   onChange={(event) => {
                     setPhone(event.target.value);
-                    if (errors.phone) setErrors((prev) => ({ ...prev, phone: undefined }));
+                    if (errors.phone)
+                      setErrors((prev) => ({ ...prev, phone: undefined }));
                   }}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -209,7 +217,9 @@ export function RsvpForm() {
                   className="mt-2 w-full border-b-2 border-sage bg-transparent px-1 py-2 font-serif text-lg text-sage-dark focus:border-gold focus:outline-none"
                 />
                 {errors.phone && (
-                  <p className="mt-1 font-serif text-sm italic text-rose-dark">{errors.phone}</p>
+                  <p className="mt-1 font-serif text-sm italic text-rose-dark">
+                    {errors.phone}
+                  </p>
                 )}
               </div>
 
@@ -264,7 +274,10 @@ export function RsvpForm() {
                         onChange={() => {
                           setAttendance(option.value);
                           if (errors.attendance) {
-                            setErrors((prev) => ({ ...prev, attendance: undefined }));
+                            setErrors((prev) => ({
+                              ...prev,
+                              attendance: undefined,
+                            }));
                           }
                         }}
                         className="sr-only"
@@ -276,7 +289,9 @@ export function RsvpForm() {
                   ))}
                 </div>
                 {errors.attendance && (
-                  <p className="mt-2 font-serif text-sm italic text-rose-dark">{errors.attendance}</p>
+                  <p className="mt-2 font-serif text-sm italic text-rose-dark">
+                    {errors.attendance}
+                  </p>
                 )}
               </motion.div>
 
@@ -286,7 +301,7 @@ export function RsvpForm() {
                 viewport={{ once: true, amount: 0 }}
                 transition={{
                   duration: 1,
-                  delay: 3.3,
+                  delay: 2.3,
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 className="font-serif text-sm italic text-sage"
@@ -316,7 +331,7 @@ export function RsvpForm() {
                 whileTap={loading ? {} : { scale: 0.95 }}
                 transition={{
                   duration: 1,
-                  delay: 3.6,
+                  delay: 2.6,
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 className={`mt-2 rounded-full bg-slate px-12 py-3 font-script text-xl italic text-gold-light underline decoration-gold-light underline-offset-4 transition-colors hover:bg-slate-dark ${

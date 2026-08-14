@@ -32,13 +32,13 @@ export function Hero() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0 }}
           transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute -right-4 -top-16 z-10 h-36 w-40 sm:-right-8 sm:-top-20 sm:h-44 sm:w-48"
+          className="absolute -right-6 -top-16 z-10 h-36 w-40 sm:-right-8 sm:-top-20 sm:h-44 sm:w-48"
         >
           <Sway
             rotate={3}
             y={6}
             duration={5.5}
-            className="absolute left-20 top-8 h-40 w-28 sm:h-40 sm:w-28"
+            className="absolute left-20 top-8 h-38 w-26 sm:h-40 sm:w-28"
           >
             <div className="relative h-full w-full drop-shadow-md">
               <Image
@@ -55,7 +55,7 @@ export function Hero() {
             y={5}
             duration={4.8}
             delay={0.3}
-            className="absolute right-[-30px] top-8 h-32 w-20 sm:top-9 sm:h-34 sm:w-24"
+            className="absolute right-[-30px] top-8 h-30 w-18 sm:top-6 sm:h-34 sm:w-24"
           >
             <div className="relative h-full w-full drop-shadow-md">
               <Image
@@ -77,7 +77,7 @@ export function Hero() {
             transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <Sway rotate={1} y={2} duration={6} origin="bottom left">
-              <div className="relative h-56 w-56 drop-shadow-md sm:h-36 sm:w-36">
+              <div className="relative h-56 w-56 drop-shadow-md">
                 <Image
                   src={IMG.fountain}
                   alt=""

@@ -71,8 +71,12 @@ export function SufiNightSection() {
             initial={{ opacity: 0, scale: 0.3 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0 }}
-            transition={{ duration: 1.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="flex items-center justify-center gap-3 font-serif text-3xl tracking-wide text-sage sm:text-4xl"
+            transition={{
+              duration: 1.9,
+              delay: 0.35,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="flex items-center justify-center gap-3 font-serif text-2xl tracking-wide text-sage sm:text-4xl"
           >
             <span>16</span>
             <span className="text-rose">|</span>
@@ -86,7 +90,7 @@ export function SufiNightSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0 }}
             transition={{ duration: 1.7, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif text-md italic text-slate"
+            className="font-serif text-sm italic text-slate"
           >
             Spara Boutique resort
           </motion.p>
@@ -94,8 +98,12 @@ export function SufiNightSection() {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0 }}
-            transition={{ duration: 1.7, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            className="pt-0 mt-0 font-serif text-md italic text-slate"
+            transition={{
+              duration: 1.7,
+              delay: 0.85,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="font-serif text-sm italic text-slate"
           >
             {"{ Poolside }"}
           </motion.p>
