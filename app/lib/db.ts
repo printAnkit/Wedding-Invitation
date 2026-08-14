@@ -1,7 +1,14 @@
 import { neon } from "@neondatabase/serverless";
 
-if (!process.env.DATABASE_URL) {
-  console.warn("Warning: DATABASE_URL is not defined in environment variables.");
-}
+let sqlInstance: ReturnType<typeof neon> | null = null;
 
-export const sql = neon(process.env.DATABASE_URL || "");
+export const sql = (strings: TemplateStringsArray, ...values: any[]) => {
+  if (!sqlInstance) {
+    const url = process.env.DATABASE_URL;
+    if (!url) {
+      throw new Error("DATABASE_URL is not defined in environment variables.");
+    }
+    sqlInstance = neon(url);
+  }
+  return sqlInstance(strings, ...values);
+};
