@@ -26,7 +26,14 @@ const jost = Jost({
   subsets: ["latin"],
 });
 
+const productionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "https://wedding-invitation-eta.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(productionUrl),
   title: "Meharvan & Snjyot | Wedding Celebrations",
   description:
     "With immense joy and grateful hearts, we invite you to the wedding celebrations of Meharvan and Snjyot — 16 to 18 November 2026, Spara Boutique Resort.",
