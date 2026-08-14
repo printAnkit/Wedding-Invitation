@@ -71,7 +71,7 @@ export function FunctionDetails() {
           initial={{ opacity: 0, scale: 0.4 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 2.8, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10 flex flex-col items-center"
         >
           <h2 className="-translate-x-6 font-symphony text-6xl leading-tight text-sage sm:-translate-x-10 lg:text-7xl xl:text-8xl">

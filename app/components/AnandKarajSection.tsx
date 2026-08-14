@@ -77,7 +77,7 @@ export function AnandKarajSection() {
             initial={{ opacity: 0, y: -40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0 }}
-            transition={{ duration: 1.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 3.0, ease: [0.22, 1, 0.36, 1] }}
             className="font-symphony text-5xl text-slate"
           >
             Anand Karaj
@@ -88,8 +88,8 @@ export function AnandKarajSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0 }}
             transition={{
-              duration: 1.9,
-              delay: 0.35,
+              duration: 3.2,
+              delay: 0.9,
               ease: [0.22, 1, 0.36, 1],
             }}
             className="flex items-center justify-center gap-3 font-serif text-3xl tracking-wide text-sage sm:text-4xl"
@@ -105,7 +105,7 @@ export function AnandKarajSection() {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0 }}
-            transition={{ duration: 1.7, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 3.0, delay: 1.6, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-md italic text-rose"
           >
             Spara Boutique Resort
@@ -115,8 +115,8 @@ export function AnandKarajSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0 }}
             transition={{
-              duration: 1.7,
-              delay: 0.85,
+              duration: 3.0,
+              delay: 2.0,
               ease: [0.22, 1, 0.36, 1],
             }}
             className="font-serif text-md italic text-rose"
@@ -128,7 +128,7 @@ export function AnandKarajSection() {
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0 }}
-            transition={{ duration: 1.7, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 3.0, delay: 2.4, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-base italic text-sage"
           >
             11:00am onwards

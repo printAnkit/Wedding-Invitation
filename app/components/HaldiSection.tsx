@@ -32,7 +32,7 @@ export function HaldiSection() {
             initial={{ opacity: 0, y: -40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0 }}
-            transition={{ duration: 1.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 3.0, ease: [0.22, 1, 0.36, 1] }}
             className="font-symphony text-5xl text-gold"
           >
             Tikka &amp; Haldi
@@ -42,7 +42,7 @@ export function HaldiSection() {
             initial={{ opacity: 0, scale: 0.3 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0 }}
-            transition={{ duration: 1.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 3.2, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center gap-3 font-serif text-3xl tracking-wide text-sage sm:text-4xl"
           >
             <span>16</span>
@@ -56,7 +56,7 @@ export function HaldiSection() {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0 }}
-            transition={{ duration: 1.7, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 3.0, delay: 1.6, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-md italic text-rose"
           >
             Spara Boutique resort
@@ -65,7 +65,7 @@ export function HaldiSection() {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0 }}
-            transition={{ duration: 1.7, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 3.0, delay: 2.0, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-md italic text-rose"
           >
             {"{ Round Hall & Poolside }"}
@@ -75,7 +75,7 @@ export function HaldiSection() {
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0 }}
-            transition={{ duration: 1.7, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 3.0, delay: 2.4, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-base italic text-sage"
           >
             11:00am Followed by lunch
@@ -86,7 +86,7 @@ export function HaldiSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0 }}
-          transition={{ duration: 1.8, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 3.0, delay: 2.8, ease: [0.22, 1, 0.36, 1] }}
           className="absolute bottom-0 right-0 w-48"
         >
           <div className="relative aspect-[1536/1024] w-full opacity-90">

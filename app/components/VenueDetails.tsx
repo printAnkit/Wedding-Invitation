@@ -30,7 +30,7 @@ export function VenueDetails() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0 }}
-              transition={{ duration: 0.15, delay: i * 0.09 }}
+              transition={{ duration: 0.4, delay: i * 0.18 }}
             >
               {char === " " ? " " : char}
             </motion.span>
@@ -41,7 +41,7 @@ export function VenueDetails() {
           initial={{ opacity: 0, scale: 0.3 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0 }}
-          transition={{ duration: 1.9, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 3.2, delay: 1.4, ease: [0.22, 1, 0.36, 1] }}
           className="relative mt-10 aspect-[1536/1024] w-full max-w-xl"
         >
           <Image
@@ -64,7 +64,7 @@ export function VenueDetails() {
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0 }}
-          transition={{ duration: 1.7, delay: 0.95, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 3.0, delay: 2.1, ease: [0.22, 1, 0.36, 1] }}
           className="mt-8 font-serif text-2xl uppercase tracking-wide text-slate sm:text-3xl"
         >
           Spara Boutique Resort
@@ -73,7 +73,7 @@ export function VenueDetails() {
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0 }}
-          transition={{ duration: 1.7, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 3.0, delay: 2.6, ease: [0.22, 1, 0.36, 1] }}
           className="mt-3 max-w-sm font-serif text-sm uppercase tracking-wide text-sage"
         >
           G-1, Pushpanjali Farms, Dwarka Expressway,
@@ -90,7 +90,7 @@ export function VenueDetails() {
           viewport={{ once: true, amount: 0 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
-          transition={{ duration: 1.2, delay: 1.3, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 2.2, delay: 3.1, ease: [0.22, 1, 0.36, 1] }}
           className="mt-8 inline-flex items-center gap-2 border-b border-gold font-script text-2xl italic text-gold underline decoration-gold underline-offset-4 transition-colors hover:text-gold-dark"
         >
           View On Map

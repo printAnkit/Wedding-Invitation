@@ -24,14 +24,14 @@ export function Hero() {
         initial={{ opacity: 0, scale: 0.7 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 2.6, ease: [0.22, 1, 0.36, 1] }}
         className="lace-frame relative z-10 mx-auto w-full max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl"
       >
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0 }}
-          transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.6, delay: 1.0, ease: [0.22, 1, 0.36, 1] }}
           className="absolute -right-6 -top-16 z-10 h-36 w-40 sm:-right-8 sm:-top-20 sm:h-44 sm:w-48"
         >
           <Sway
@@ -74,7 +74,7 @@ export function Hero() {
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.6, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <Sway rotate={1} y={2} duration={6} origin="bottom left">
               <div className="relative h-56 w-56 drop-shadow-md">
@@ -112,8 +112,8 @@ export function Hero() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{
-                duration: 0.8,
-                delay: 0.8,
+                duration: 2.2,
+                delay: 1.5,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="font-serif text-xs italic text-sage lg:text-sm xl:text-base"
@@ -125,8 +125,8 @@ export function Hero() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{
-                duration: 0.8,
-                delay: 1,
+                duration: 2.2,
+                delay: 2.0,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="font-serif text-xs italic text-sage lg:text-sm xl:text-base"
@@ -138,8 +138,8 @@ export function Hero() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{
-                duration: 0.8,
-                delay: 1.2,
+                duration: 2.2,
+                delay: 2.5,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="font-serif text-xs italic text-sage lg:text-sm xl:text-base"
@@ -170,8 +170,8 @@ export function Hero() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{
-                duration: 0.8,
-                delay: 2.1,
+                duration: 2.2,
+                delay: 3.5,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="font-serif text-xs italic text-sage lg:text-sm xl:text-base"
@@ -183,8 +183,8 @@ export function Hero() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{
-                duration: 0.8,
-                delay: 2.3,
+                duration: 2.2,
+                delay: 4.0,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="font-serif text-xs italic text-sage lg:text-sm xl:text-base"
