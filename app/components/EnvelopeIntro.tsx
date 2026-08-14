@@ -16,6 +16,27 @@ export function EnvelopeIntro() {
     return () => clearTimeout(timer);
   }, [open]);
 
+  useEffect(() => {
+    if (!expanded) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [expanded]);
+
+  const handleScrollDown = () => {
+    const heroSection = document.getElementById("hero");
+    if (heroSection) {
+      heroSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="envelope"
@@ -243,6 +264,53 @@ export function EnvelopeIntro() {
           Tap to Open
         </motion.p>
       </div>
+
+      {/* Scroll Down Arrow Indicator */}
+      <AnimatePresence>
+        {expanded && (
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 15 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2"
+          >
+            <button
+              onClick={handleScrollDown}
+              className="group flex flex-col items-center gap-1.5 cursor-pointer focus:outline-none"
+              aria-label="Scroll down to invitation details"
+            >
+              <span className="font-label text-[10px] uppercase tracking-widest-lg text-ink-soft/70 transition-colors group-hover:text-gold-dark">
+                Scroll Down
+              </span>
+              <motion.div
+                animate={{ y: [0, 6, 0] }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/70 shadow-md backdrop-blur-sm border border-gold-light/20 transition-all duration-300 group-hover:bg-white group-hover:border-gold-light/50 group-hover:text-gold-dark text-ink-soft"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2.5"
+                  stroke="currentColor"
+                  className="h-5 w-5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </motion.div>
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

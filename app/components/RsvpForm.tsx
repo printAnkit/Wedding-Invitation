@@ -13,11 +13,62 @@ export function RsvpForm() {
   const [phone, setPhone] = useState("");
   const [attendance, setAttendance] = useState<Attendance | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<{ name?: string; phone?: string; attendance?: string }>({});
+  const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function validate() {
+    const newErrors: typeof errors = {};
+    if (!name.trim()) {
+      newErrors.name = "Please enter your name.";
+    }
+
+    const cleanPhone = phone.trim();
+    if (!cleanPhone) {
+      newErrors.phone = "Please enter your mobile number.";
+    } else if (!/^[0-9\s+-]{10,15}$/.test(cleanPhone)) {
+      newErrors.phone = "Please enter a valid mobile number (10 to 15 digits).";
+    }
+
+    if (!attendance) {
+      newErrors.attendance = "Please specify if you will be joining us.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!name.trim() || !attendance) return;
-    setSubmitted(true);
+    setSubmitError("");
+
+    if (!validate()) return;
+
+    setLoading(true);
+    try {
+      const response = await fetch("/api/rsvp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          phone: phone.trim(),
+          attendance,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to submit RSVP");
+      }
+
+      setSubmitted(true);
+    } catch (err: any) {
+      setSubmitError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -108,9 +159,11 @@ export function RsvpForm() {
                 <motion.input
                   id="guest-name"
                   type="text"
-                  required
                   value={name}
-                  onChange={(event) => setName(event.target.value)}
+                  onChange={(event) => {
+                    setName(event.target.value);
+                    if (errors.name) setErrors((prev) => ({ ...prev, name: undefined }));
+                  }}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0 }}
@@ -121,6 +174,9 @@ export function RsvpForm() {
                   }}
                   className="mt-2 w-full border-b-2 border-sage bg-transparent px-1 py-2 font-serif text-lg text-sage-dark focus:border-gold focus:outline-none"
                 />
+                {errors.name && (
+                  <p className="mt-1 font-serif text-sm italic text-rose-dark">{errors.name}</p>
+                )}
               </div>
 
               <div className="w-full text-left">
@@ -138,7 +194,10 @@ export function RsvpForm() {
                   type="tel"
                   inputMode="tel"
                   value={phone}
-                  onChange={(event) => setPhone(event.target.value)}
+                  onChange={(event) => {
+                    setPhone(event.target.value);
+                    if (errors.phone) setErrors((prev) => ({ ...prev, phone: undefined }));
+                  }}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0 }}
@@ -149,6 +208,9 @@ export function RsvpForm() {
                   }}
                   className="mt-2 w-full border-b-2 border-sage bg-transparent px-1 py-2 font-serif text-lg text-sage-dark focus:border-gold focus:outline-none"
                 />
+                {errors.phone && (
+                  <p className="mt-1 font-serif text-sm italic text-rose-dark">{errors.phone}</p>
+                )}
               </div>
 
               <motion.div
@@ -199,7 +261,12 @@ export function RsvpForm() {
                         name="attendance"
                         value={option.value}
                         checked={attendance === option.value}
-                        onChange={() => setAttendance(option.value)}
+                        onChange={() => {
+                          setAttendance(option.value);
+                          if (errors.attendance) {
+                            setErrors((prev) => ({ ...prev, attendance: undefined }));
+                          }
+                        }}
                         className="sr-only"
                       />
                       <span className="font-serif text-lg italic text-sage-dark">
@@ -208,6 +275,9 @@ export function RsvpForm() {
                     </motion.label>
                   ))}
                 </div>
+                {errors.attendance && (
+                  <p className="mt-2 font-serif text-sm italic text-rose-dark">{errors.attendance}</p>
+                )}
               </motion.div>
 
               <motion.p
@@ -226,21 +296,34 @@ export function RsvpForm() {
                 98115 88250, 8796771418
               </motion.p>
 
+              {submitError && (
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="font-serif text-sm italic text-rose-dark bg-rose/10 px-4 py-2 rounded-md border border-rose/20 text-center w-full"
+                >
+                  {submitError}
+                </motion.p>
+              )}
+
               <motion.button
                 type="submit"
+                disabled={loading}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={loading ? {} : { scale: 1.05 }}
+                whileTap={loading ? {} : { scale: 0.95 }}
                 transition={{
                   duration: 1,
                   delay: 3.6,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="mt-2 rounded-full bg-slate px-12 py-3 font-script text-xl italic text-gold-light underline decoration-gold-light underline-offset-4 transition-colors hover:bg-slate-dark"
+                className={`mt-2 rounded-full bg-slate px-12 py-3 font-script text-xl italic text-gold-light underline decoration-gold-light underline-offset-4 transition-colors hover:bg-slate-dark ${
+                  loading ? "opacity-70 cursor-not-allowed" : ""
+                }`}
               >
-                Submit
+                {loading ? "Submitting..." : "Submit"}
               </motion.button>
             </motion.form>
           )}
