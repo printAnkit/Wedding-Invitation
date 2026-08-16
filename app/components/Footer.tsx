@@ -7,6 +7,8 @@ import { Sway } from "./Sway";
 import { Reveal } from "./Reveal";
 import { TypingText } from "./TypingText";
 
+const E = [0.22, 1, 0.36, 1] as const;
+
 export function Footer() {
   return (
     <footer className="relative overflow-hidden px-0 py-20 text-center">
@@ -18,13 +20,13 @@ export function Footer() {
         className="object-cover"
       />
 
-      {/* Top flower, slides in left to right (x is inverted here since the parent is mirrored with scale-x-[-1]) */}
+      {/* ── Top-left flower: slides in from left ── */}
       <div className="pointer-events-none absolute -left-8 -top-0 z-10 w-56 scale-x-[-1]">
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 80 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 3.0, ease: E }}
         >
           <Sway rotate={4} duration={6}>
             <div className="relative h-56 w-56">
@@ -40,13 +42,13 @@ export function Footer() {
         </motion.div>
       </div>
 
-      {/* Bottom flower, slides in right to left */}
+      {/* ── Bottom-right flower: slides in from right, delayed ── */}
       <div className="pointer-events-none absolute right-8 -bottom-20 z-10 w-36 scale-y-[-1]">
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 80 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 3.0, delay: 0.6, ease: E }}
         >
           <Sway rotate={-4} duration={6.5} origin="bottom center">
             <div className="relative h-56 w-56">
@@ -62,8 +64,16 @@ export function Footer() {
         </motion.div>
       </div>
 
-      <Reveal className="relative z-10 mx-auto mb-12 flex max-w-md flex-col items-center">
-        <div className="h-62 w-92">
+      {/* ── Watermark + names: rises from below ── */}
+      <Reveal delay={0.4} className="relative z-10 mx-auto mb-12 flex max-w-md flex-col items-center">
+        {/* Watermark image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, amount: 0 }}
+          transition={{ duration: 3.5, delay: 0.6, ease: E }}
+          className="h-62 w-92"
+        >
           <Image
             src={IMG.watermark}
             alt="Meharvan and Snjyot monogram"
@@ -71,7 +81,7 @@ export function Footer() {
             height={600}
             className="h-full w-full object-contain"
           />
-        </div>
+        </motion.div>
 
         <h2 className="mt-0 font-symphony text-5xl text-rose sm:text-6xl">
           <TypingText text="Meharvan" />{" "}
