@@ -137,7 +137,7 @@ export function RsvpForm() {
               <span className="text-3xl">
                 {attendance === "yes" ? "\u{1F492}" : "\u{1F64F}"}
               </span>
-              <p className="font-serif text-xl italic text-sage">
+              <p className="font-serif text-2xl font-semibold italic text-sage">
                 {attendance === "yes"
                   ? `Thank you, ${name}! We can’t wait to celebrate with you.`
                   : `Thank you, ${name}. You’ll be missed — with love from us.`}
@@ -156,7 +156,7 @@ export function RsvpForm() {
               <div className="w-full text-left">
                 <label
                   htmlFor="guest-name"
-                  className="font-serif text-lg italic text-sage"
+                  className="font-serif text-xl font-semibold italic text-sage"
                 >
                   <TypingText text="Please enter your name" delay={0.5} />
                 </label>
@@ -177,10 +177,10 @@ export function RsvpForm() {
                     delay: 1.3,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="mt-2 w-full border-b-2 border-sage bg-transparent px-1 py-2 font-serif text-lg text-sage-dark focus:border-gold focus:outline-none"
+                  className="mt-2 w-full border-b-2 border-sage bg-transparent px-1 py-2 font-serif text-xl font-semibold text-sage-dark focus:border-gold focus:outline-none"
                 />
                 {errors.name && (
-                  <p className="mt-1 font-serif text-sm italic text-rose-dark">
+                  <p className="mt-1 font-serif text-base font-semibold italic text-rose-dark">
                     {errors.name}
                   </p>
                 )}
@@ -189,7 +189,7 @@ export function RsvpForm() {
               <div className="w-full text-left">
                 <label
                   htmlFor="guest-phone"
-                  className="font-serif text-lg italic text-sage"
+                  className="font-serif text-xl font-semibold italic text-sage"
                 >
                   <TypingText
                     text="Please enter your mobile number"
@@ -214,10 +214,10 @@ export function RsvpForm() {
                     delay: 2.6,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="mt-2 w-full border-b-2 border-sage bg-transparent px-1 py-2 font-serif text-lg text-sage-dark focus:border-gold focus:outline-none"
+                  className="mt-2 w-full border-b-2 border-sage bg-transparent px-1 py-2 font-serif text-xl font-semibold text-sage-dark focus:border-gold focus:outline-none"
                 />
                 {errors.phone && (
-                  <p className="mt-1 font-serif text-sm italic text-rose-dark">
+                  <p className="mt-1 font-serif text-base font-semibold italic text-rose-dark">
                     {errors.phone}
                   </p>
                 )}
@@ -230,7 +230,7 @@ export function RsvpForm() {
                 transition={{ duration: 1, delay: 3, ease: [0.22, 1, 0.36, 1] }}
                 className="w-full text-left"
               >
-                <p className="font-serif text-lg italic text-sage">
+                <p className="font-serif text-xl font-semibold italic text-sage">
                   Will you be joining us for the wedding celebrations?
                 </p>
 
@@ -260,7 +260,7 @@ export function RsvpForm() {
                           <motion.span
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            className="text-sm text-paper"
+                            className="text-base text-paper"
                           >
                             &#10003;
                           </motion.span>
@@ -282,14 +282,14 @@ export function RsvpForm() {
                         }}
                         className="sr-only"
                       />
-                      <span className="font-serif text-lg italic text-sage-dark">
+                      <span className="font-serif text-xl font-semibold italic text-sage-dark">
                         {option.label}
                       </span>
                     </motion.label>
                   ))}
                 </div>
                 {errors.attendance && (
-                  <p className="mt-2 font-serif text-sm italic text-rose-dark">
+                  <p className="mt-2 font-serif text-base font-semibold italic text-rose-dark">
                     {errors.attendance}
                   </p>
                 )}
@@ -304,7 +304,7 @@ export function RsvpForm() {
                   delay: 2.3,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="font-serif text-sm italic text-sage"
+                className="font-serif text-base font-semibold italic text-sage"
               >
                 For any further information, please feel free to contact us.
                 <br />
@@ -315,7 +315,7 @@ export function RsvpForm() {
                 <motion.p
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="font-serif text-sm italic text-rose-dark bg-rose/10 px-4 py-2 rounded-md border border-rose/20 text-center w-full"
+                  className="font-serif text-base font-semibold italic text-rose-dark bg-rose/10 px-4 py-2 rounded-md border border-rose/20 text-center w-full"
                 >
                   {submitError}
                 </motion.p>
@@ -334,7 +334,7 @@ export function RsvpForm() {
                   delay: 2.6,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className={`mt-2 rounded-full bg-slate px-12 py-3 font-script text-xl italic text-gold-light underline decoration-gold-light underline-offset-4 transition-colors hover:bg-slate-dark ${
+                className={`mt-2 rounded-full bg-slate px-12 py-3 font-script text-2xl italic text-gold-light underline decoration-gold-light underline-offset-4 transition-colors hover:bg-slate-dark ${
                   loading ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >
